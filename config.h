@@ -10,8 +10,8 @@ static const unsigned int gappx     = 10;       /* gaps between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "Inconsolata-SemiExpanded:size=10", "Symbols Nerd Font:size=10" };
-static const char dmenufont[]       = "Inconsolata-SemiExpanded:size=12";
+static const char *fonts[]          = { "Inconsolata-SemiExpanded:size=8", "Symbols Nerd Font:size=9" };
+static const char dmenufont[]       = "Inconsolata-SemiExpanded:size=10";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
@@ -44,10 +44,10 @@ static const Rule rules[] = {
 };
 
 /* layout(s) */
-static const float mfact     = 0.5; /* factor of master area size [0.05..0.95] */
-static const int nmaster     = 1;    /* number of clients in master area */
-static const int resizehints = 0;    /* 1 means respect size hints in tiled resizals */
-static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
+static const float mfact	= 0.5;	/* factor of master area size [0.05..0.95] */
+static const int nmaster	= 1;	/* number of clients in master area */
+static const int resizehints	= 0;    /* 1 means respect size hints in tiled resizals */
+static const int lockfullscreen = 1;	/* 1 will force focus on the fullscreen window */
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
@@ -74,7 +74,6 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_black, "-nf", col_gray3, "-sb", col_pink, "-sf", col_gray4, "-bw", "2","-l", "20", "-i", "-c", NULL };
 static const char *termcmd[] = { "st", NULL };
-static const char *layoutmenu_cmd = "layoutmenu.sh";
 static const char *screenshot[] = {"scrot", "/home/luiselprrayt/Pictures/screenshots/scrot-%Y-%m-%d_%H-%M-%S.png", "-e", "xclip -selection clipboard -t image/png -i $f"};
 static const char *sselect[] = {"scrot", "-s", "-f", "/home/luiselprrayt/Pictures/screenshots/scrot-%Y-%m-%d_%H-%M-%S.png", "-e", "xclip -selection clipboard -t image/png -i $f"};
 
@@ -124,7 +123,7 @@ static const Key keys[] = {
 //	{ MODKEY,                       XK_o,			    setlayout,	    {.v = &layouts[4]} },
 //	{ MODKEY,                       XK_m,                       setlayout,	    {.v = &layouts[5]} },
 	{ MODKEY,			XK_s,			    togglesticky,   {0} },
-	{ MODKEY,                       XK_space,                   layoutmenu,	    {0} },
+	{ MODKEY,                       XK_space,		    setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,                   togglefloating, {0} },
 	{ MODKEY|ControlMask,           XK_j,			    pushdown,       {0} },
 	{ MODKEY|ControlMask,           XK_k,			    pushup,         {0} },
@@ -167,7 +166,7 @@ static const Key keys[] = {
 static const Button buttons[] = {
 	/* click                event mask      button          function        argument */
 	{ ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
-	{ ClkLtSymbol,          0,              Button3,        layoutmenu,     {0} },
+	{ ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
 	{ ClkWinTitle,          0,              Button2,        zoom,           {0} },
 	{ ClkStatusText,        0,              Button2,        spawn,          {.v = termcmd } },
 	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
