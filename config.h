@@ -87,6 +87,7 @@ static const Key keys[] = {
 	{ MODKEY|ControlMask,           XK_Return,                  spawn,	    SHCMD("st htop") },
 	{ MODKEY,                       XK_e,                       spawn,	    SHCMD("st nnn") },
 	{ MODKEY,                       XK_n,                       spawn,	    SHCMD("st ncmpcpp") },
+	{ MODKEY,                       XK_m,                       spawn,	    SHCMD("laymenu") },
 	{ MODKEY|ShiftMask,		XK_n,			    spawn,	    SHCMD("st pulsemixer") },
 	{ MODKEY|ShiftMask,             XK_w,                       spawn,	    SHCMD("webcam") },
 	{ MODKEY,                       XK_Insert,                  spawn,	    SHCMD("bkms") },
@@ -94,8 +95,8 @@ static const Key keys[] = {
 	{ MODKEY,			XK_Home,		    spawn,	    SHCMD("passmenu") },
 	{ MODKEY|ShiftMask,		XK_Home,		    spawn,	    SHCMD("passmenu --otp") },
 	{ MODKEY,			XK_slash,		    spawn,	    SHCMD("emojipick") },
-	{ MODKEY,			XK_F2,			    spawn,	    SHCMD("mpc volume -2; kill -39 $(pidof dwmblocks)") },
-	{ MODKEY,			XK_F3,			    spawn,	    SHCMD("mpc volume +2; kill -39 $(pidof dwmblocks)") },
+	{ MODKEY,			XK_F2,			    spawn,	    SHCMD("mpc volume -5; kill -39 $(pidof dwmblocks)") },
+	{ MODKEY,			XK_F3,			    spawn,	    SHCMD("mpc volume +5; kill -39 $(pidof dwmblocks)") },
 	{ MODKEY,			XK_F7,			    spawn,	    SHCMD("mpc toggle") },
 	{ MODKEY,			XK_F5,			    spawn,	    SHCMD("mpc stop") },
 	{ MODKEY,			XK_F6,			    spawn,	    SHCMD("mpc prev") },
@@ -178,3 +179,15 @@ static const Button buttons[] = {
 	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
 };
 
+/* signal definitions */
+/* signum must be greater than 0 */
+/* trigger signals using `xsetroot -name "fsignal:<signum>"` */
+static Signal signals[] = {
+	/* signum       function        argument  */
+	{ 1,            setlayout,      {.v = &layouts[0]} },
+	{ 2,            setlayout,      {.v = &layouts[1]} },
+	{ 3,            setlayout,      {.v = &layouts[2]} },
+	{ 4,            setlayout,      {.v = &layouts[3]} },
+	{ 5,            setlayout,      {.v = &layouts[4]} },
+	{ 6,            setlayout,      {.v = &layouts[5]} },
+};
